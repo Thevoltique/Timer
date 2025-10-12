@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Voltique | Coming Soon</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #2e004f, #ff416c);
+      color: #fff;
+      text-align: center;
+    }
+
+    img.logo {
+      width: 180px;
+      margin-bottom: 40px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h2 {
+      font-size: 2em;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1em;
+      max-width: 600px;
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .countdown div {
+      background: #fff;
+      color: #222;
+      border-radius: 8px;
+      padding: 25px 15px;
+      min-width: 80px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .countdown div span:first-child {
+      display: block;
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+
+    .countdown div span:last-child {
+      display: block;
+      font-size: 0.8em;
+      margin-top: 5px;
+      color: #777;
+      text-transform: uppercase;
+    }
+
+    .subscribe-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 30px;
+      padding: 5px;
+      width: 320px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .subscribe-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1em;
+    }
+
+    .subscribe-box input::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .subscribe-box button {
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .subscribe-box button:hover {
+      background: #ffdbdb;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <img src="PHOTO-2025-09-24-18-28-33.jpg" alt="The Voltique Logo" class="logo">
+
+  <h2>WE ARE COMING SOON</h2>
+  <p>Something electrifying is on its way. The Voltique will soon bring you the best in gadgets, innovation, and technology. Stay tuned!</p>
+
+  <div class="countdown" id="countdown">
+    <div><span id="days">00</span><span>Days</span></div>
+    <div><span id="hours">00</span><span>Hours</span></div>
+    <div><span id="minutes">00</span><span>Minutes</span></div>
+    <div><span id="seconds">00</span><span>Seconds</span></div>
+  </div>
+
+  <div class="subscribe-box">
+    <input type="email" id="email" placeholder="Enter your email address">
+    <button onclick="notifyUser()">Subscribe</button>
+  </div>
+
+  <script>
+    // Countdown to November 1
+    const now = new Date();
+    let targetYear = now.getFullYear();
+    let targetDate = new Date(${targetYear}-11-01T00:00:00);
+
+    if (now > targetDate) {
+      targetDate.setFullYear(targetYear + 1);
+    }
+
+    function updateCountdown() {
+      const current = new Date();
+      const diff = targetDate - current;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "<h2>We have launched!</h2>";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function notifyUser() {
+      const email = document.getElementById('email').value.trim();
+      if (email === '') {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      alert(Thank you, ${email}! We'll notify you once we launch.);
+      document.getElementById('email').value = '';
+    }
+  </script>
+</body>
+</html>
