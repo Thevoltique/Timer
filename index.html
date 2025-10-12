@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Voltique | Coming Soon</title>
+
   <style>
+    /* Base Styles */
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       font-family: 'Poppins', sans-serif;
       display: flex;
       flex-direction: column;
@@ -16,16 +18,20 @@
       background: linear-gradient(135deg, #2e004f, #ff416c);
       color: #fff;
       text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     img.logo {
-      width: 180px;
+      width: 25vw;
+      max-width: 300px;
+      min-width: 160px;
       margin-bottom: 40px;
       animation: fadeIn 2s ease-in-out;
     }
 
     h2 {
-      font-size: 2em;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
       letter-spacing: 2px;
       margin-bottom: 10px;
       color: #fff;
@@ -33,15 +39,17 @@
 
     p {
       color: rgba(255,255,255,0.8);
-      font-size: 1em;
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
       max-width: 600px;
       margin-bottom: 40px;
-      line-height: 1.5;
+      line-height: 1.6;
+      padding: 0 15px;
     }
 
     .countdown {
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
       justify-content: center;
       align-items: center;
       margin-bottom: 40px;
@@ -51,15 +59,15 @@
       background: #fff;
       color: #222;
       border-radius: 8px;
-      padding: 25px 15px;
-      min-width: 80px;
+      padding: 20px 15px;
+      min-width: 70px;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
 
     .countdown div span:first-child {
       display: block;
-      font-size: 2.5em;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
       font-weight: 700;
     }
 
@@ -78,7 +86,8 @@
       background: rgba(255,255,255,0.1);
       border-radius: 30px;
       padding: 5px;
-      width: 320px;
+      width: 90%;
+      max-width: 350px;
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
 
@@ -105,6 +114,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: 0.3s;
+      white-space: nowrap;
     }
 
     .subscribe-box button:hover {
@@ -115,16 +125,62 @@
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    img.logo {
-  width: 300px; /* increase from 180px */
-  margin-bottom: 40px;
-  animation: fadeIn 2s ease-in-out;
-}
 
+    /* Responsive Tweaks */
+    @media (max-width: 768px) {
+      .countdown div {
+        min-width: 60px;
+        padding: 15px 10px;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      img.logo {
+        width: 60vw;
+        margin-bottom: 25px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+      }
+
+      .countdown {
+        gap: 10px;
+      }
+
+      .countdown div {
+        min-width: 55px;
+        padding: 12px 8px;
+      }
+
+      .subscribe-box {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .subscribe-box input {
+        width: 100%;
+        text-align: center;
+      }
+
+      .subscribe-box button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="The Voltique Logo" class="logo">
+  <img src="logo.png" alt="The Voltique Logo" class="logo" />
 
   <h2>WE ARE COMING SOON</h2>
   <p>Something electrifying is on its way. The Voltique will soon bring you the best in gadgets, innovation, and technology. Stay tuned!</p>
@@ -137,12 +193,12 @@
   </div>
 
   <div class="subscribe-box">
-    <input type="email" id="email" placeholder="Enter your email address">
+    <input type="email" id="email" placeholder="Enter your email address" />
     <button onclick="notifyUser()">Subscribe</button>
   </div>
 
   <script>
-    // Countdown to November 1
+    // Countdown to November 12
     const now = new Date();
     let targetYear = now.getFullYear();
     let targetDate = new Date(`${targetYear}-11-12T00:00:00`);
